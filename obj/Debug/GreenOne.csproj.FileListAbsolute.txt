@@ -1,0 +1,6 @@
+C:\Users\Joel\Documents\GitHub\GreenOne\GreenOne\obj\Debug\GreenOne.csprojResolveAssemblyReference.cache
+C:\Users\Joel\Documents\GitHub\GreenOne\GreenOne\bin\GreenOne.dll.config
+C:\Users\Joel\Documents\GitHub\GreenOne\GreenOne\bin\GreenOne.dll
+C:\Users\Joel\Documents\GitHub\GreenOne\GreenOne\bin\GreenOne.pdb
+C:\Users\Joel\Documents\GitHub\GreenOne\GreenOne\obj\Debug\GreenOne.dll
+C:\Users\Joel\Documents\GitHub\GreenOne\GreenOne\obj\Debug\GreenOne.pdb

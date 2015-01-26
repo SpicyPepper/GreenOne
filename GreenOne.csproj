@@ -27,6 +27,7 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="phaser.d.ts" />
     <TypeScriptCompile Include="pixi.d.ts" />
+    <TypeScriptCompile Include="States\TitleScreenState.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
@@ -39,7 +40,7 @@
   <ItemGroup>
     <Folder Include="Audio\" />
     <Folder Include="Entities\" />
-    <Folder Include="States\" />
+    <Folder Include="Resources\" />
     <Folder Include="Visuals\" />
   </ItemGroup>
   <PropertyGroup>

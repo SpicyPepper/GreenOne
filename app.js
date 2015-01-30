@@ -9,16 +9,19 @@ var mainState = {
     },
     create: function () {
         game.world.setBounds(0, 0, 800, 512);
+        //adds tilesprite (tilespritet necessary for parallax scrolling);
         background = game.add.tileSprite(0, 0, 1024, 512, 'background');
+        //hero sprite
         hero = game.add.sprite(300, 200, 'hero');
         hero.animations.add('run');
-        hero.animations.play('run', 40, true);
+        hero.animations.play('run', 70, true);
         game.physics.enable(hero, Phaser.Physics.ARCADE);
         hero.body.collideWorldBounds = true;
         game.camera.follow(hero);
         cursors = game.input.keyboard.createCursorKeys();
         //Phaser does all scaling because of this line.
     },
+    //mapeditor.org for tiles
     update: function () {
         background.tilePosition.x -= 2;
         hero.body.velocity.x = 0;

@@ -8,25 +8,28 @@ var mainState = {
     preload: function () {
         game.load.image('background', 'visuals/bkgrnd_sand.png');
         game.load.spritesheet('hero', '/visuals/test_run.png', 128, 128);
-
-
+        
     },
     
     create: function () {
         
         game.world.setBounds(0, 0, 800, 512);
+
+        //adds tilesprite (tilespritet necessary for parallax scrolling);
         background = game.add.tileSprite(0, 0, 1024, 512, 'background');
+
+        //hero sprite
         hero = game.add.sprite(300, 200, 'hero');
         hero.animations.add('run');
-        hero.animations.play('run', 40, true);
-        
+        hero.animations.play('run', 70, true);
         game.physics.enable(hero, Phaser.Physics.ARCADE);
         hero.body.collideWorldBounds = true;
         game.camera.follow(hero);
-        cursors = game.input.keyboard.createCursorKeys();    
-        //Phaser does all scaling because of this line.
-    },
 
+        cursors = game.input.keyboard.createCursorKeys();    
+       //Phaser does all scaling because of this line.
+    },
+    //mapeditor.org for tiles
     update: function () {
         background.tilePosition.x -= 2;
 

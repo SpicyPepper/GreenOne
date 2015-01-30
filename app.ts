@@ -49,7 +49,7 @@ var mainState = {
     },
 
     render: function () {
-        game.debug.cameraInfo(game.camera, 500, 32);
+        game.debug.cameraInfo(game.camera, 500, 32);//164
         game.debug.spriteCoords(hero, 32, 32);
     },
 };

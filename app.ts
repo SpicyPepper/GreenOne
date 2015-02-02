@@ -60,7 +60,7 @@ var gravityButton;
     function update() {
         game.physics.arcade.collide(hero, layer);
         background.tilePosition.x -= 2;
-
+        game.camera.x += 2;
         hero.body.velocity.x = 240;
         hero.body.velocity.y = 0;
 
@@ -78,6 +78,9 @@ var gravityButton;
         } else if (cursors.down.isDown) {
             hero.body.velocity.y = 240;
         }
+        //if (hero.body.blocked.right) {
+        //    hero.animations.stop();
+        //}
     }
 
     function render() {

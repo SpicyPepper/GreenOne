@@ -1,36 +1,58 @@
 ﻿
-var game = new Phaser.Game(800, 512, Phaser.AUTO, 'greenone', true, false, false, Phaser.Physics.ARCADE);
+var game = new Phaser.Game(800, 512, Phaser.AUTO, 'greenone', { preload: preload, create: create, update: update, render: render });
+var map;
 var hero;
 var cursors;
 var background;
+var layer;
 
-var mainState = {
-    preload: function () {
+
+    function preload() {
+
+        game.load.tilemap('level1', 'resources/level1.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('tiles-1', 'resources/tiles-1.png');
+
         game.load.image('background', 'visuals/bkgrnd_sand.png');
         game.load.spritesheet('hero', '/visuals/test_run.png', 128, 128);
         
-    },
+    }
     
-    create: function () {
+    function create() {
         
         game.world.setBounds(0, 0, 800, 512);
 
         //adds tilesprite (tilespritet necessary for parallax scrolling);
         background = game.add.tileSprite(0, 0, 1024, 512, 'background');
 
+        map = game.add.tilemap('level1');
+        //set collision
+        map.addTilesetImage('tiles-1');
+
+       // map.setCollisionByExclusion([]);
+
+        layer = map.createLayer('Tile Layer 1');
+       // layer.debug = true;
+
+        layer.resizeWorld();
+
+        game.physics.arcade.gravity.y = 250;
+
+
+        //Phaser.Physics.Arcade.collideSpriteVsTilemapLayer(hero, 
         //hero sprite
         hero = game.add.sprite(300, 200, 'hero');
         hero.animations.add('run');
         hero.animations.play('run', 70, true);
         game.physics.enable(hero, Phaser.Physics.ARCADE);
+       
         hero.body.collideWorldBounds = true;
         game.camera.follow(hero);
 
         cursors = game.input.keyboard.createCursorKeys();    
        //Phaser does all scaling because of this line.
-    },
+    }
     //mapeditor.org for tiles
-    update: function () {
+    function update() {
         background.tilePosition.x -= 2;
 
         hero.body.velocity.x = 0;
@@ -46,13 +68,9 @@ var mainState = {
         } else if (cursors.down.isDown) {
             hero.body.velocity.y = 240;
         }
-    },
+    }
 
-    render: function () {
+    function render() {
         game.debug.cameraInfo(game.camera, 500, 32);//164
         game.debug.spriteCoords(hero, 32, 32);
-    },
-};
-
-game.state.add('main', mainState);
-game.state.start('main');
+    }

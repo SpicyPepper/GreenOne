@@ -33,7 +33,7 @@ var gravityButton;
         map.setCollisionByExclusion([]);
 
         layer = map.createLayer('Tile Layer 1');
-        layer.debug = true;
+        //layer.debug = true;
 
         layer.resizeWorld();
 

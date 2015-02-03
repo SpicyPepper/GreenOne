@@ -21,7 +21,7 @@ function create() {
     map.addTilesetImage('tiles-1');
     map.setCollisionByExclusion([]);
     layer = map.createLayer('Tile Layer 1');
-    layer.debug = true;
+    //layer.debug = true;
     layer.resizeWorld();
     game.physics.arcade.gravity.y = 10000;
     //Phaser.Physics.Arcade.collideSpriteVsTilemapLayer(hero, 

@@ -1,6 +1,7 @@
 var game = new Phaser.Game(800, 512, Phaser.AUTO, 'greenone', { preload: preload, create: create, update: update, render: render });
 var map;
 var hero;
+var enemyChase;
 var cursors;
 var background;
 var layer;
@@ -11,6 +12,8 @@ function preload() {
     game.load.image('tiles-1', 'resources/tiles-1.png');
     game.load.image('background', 'visuals/bkgrnd_sand.png');
     game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
+    game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
+    game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 42.9, 64);
 }
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -27,7 +30,8 @@ function create() {
     game.physics.arcade.gravity.y = 10000;
     //Phaser.Physics.Arcade.collideSpriteVsTilemapLayer(hero, 
     //hero sprite
-    hero = game.add.sprite(0, 350, 'hero'); // Start location
+    hero = game.add.sprite(50, 350, 'hero'); // Start location
+    enemyChase = game.add.sprite(0, 300, 'enemyChase'); // Start location
     floor = true;
     hero.animations.add('run');
     hero.animations.play('run', 10, true);
@@ -36,6 +40,12 @@ function create() {
     hero.body.collideWorldBounds = true;
     game.camera.follow(hero);
     hero.body.allowRotation = true;
+    enemyChase.animations.add('run');
+    enemyChase.animations.play('run', 10, true);
+    game.physics.enable(enemyChase, Phaser.Physics.ARCADE);
+    enemyChase.body.bounce.y = 0.2;
+    enemyChase.body.collideWorldBounds = true;
+    enemyChase.body.allowRotation = true;
     cursors = game.input.keyboard.createCursorKeys();
     gravityButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     //Phaser does all scaling because of this line.
@@ -43,22 +53,31 @@ function create() {
 //mapeditor.org for tiles
 function update() {
     game.physics.arcade.collide(hero, layer);
+    game.physics.arcade.collide(enemyChase, layer);
     background.tilePosition.x -= 2;
     game.camera.x += 2;
     hero.body.velocity.x = 240;
     hero.body.velocity.y = 0;
+    enemyChase.body.x = hero.body.x - 100;
+    enemyChase.body.velocity.y = 0;
     //if (gravityButton.isDown) {
     if (gravityButton.isDown && hero.body.blocked.down || gravityButton.isDown && hero.body.blocked.up) {
         if (floor) {
             hero.anchor.setTo(1, .5); //so it flips around its middle
             hero.scale.y = 1; //facing default direction
             hero.scale.y = -1; //flipped
+            enemyChase.anchor.setTo(1, .5); //so it flips around its middle
+            enemyChase.scale.y = 1; //facing default direction
+            enemyChase.scale.y = -1; //flipped
             floor = false;
         }
         else {
             hero.anchor.setTo(1, .5); //so it flips around its middle
             hero.scale.y = -1; //facing default direction
             hero.scale.y = 1; //flipped
+            enemyChase.anchor.setTo(1, .5); //so it flips around its middle
+            enemyChase.scale.y = -1; //facing default direction
+            enemyChase.scale.y = 1; //flipped
             floor = true;
         }
         game.physics.arcade.gravity.y = game.physics.arcade.gravity.y * -1;

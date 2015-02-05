@@ -5,11 +5,12 @@ var cursors;
 var background;
 var layer;
 var gravityButton;
+var floor; // boolean for is character on the floor
 function preload() {
     game.load.tilemap('level1', 'resources/level1.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('tiles-1', 'resources/tiles-1.png');
     game.load.image('background', 'visuals/bkgrnd_sand.png');
-    game.load.spritesheet('hero', '/visuals/test_run.png', 128, 128);
+    game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
 }
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -26,13 +27,15 @@ function create() {
     game.physics.arcade.gravity.y = 10000;
     //Phaser.Physics.Arcade.collideSpriteVsTilemapLayer(hero, 
     //hero sprite
-    hero = game.add.sprite(300, 200, 'hero');
+    hero = game.add.sprite(0, 350, 'hero'); // Start location
+    floor = true;
     hero.animations.add('run');
-    hero.animations.play('run', 70, true);
+    hero.animations.play('run', 10, true);
     game.physics.enable(hero, Phaser.Physics.ARCADE);
     hero.body.bounce.y = 0.2;
     hero.body.collideWorldBounds = true;
     game.camera.follow(hero);
+    hero.body.allowRotation = true;
     cursors = game.input.keyboard.createCursorKeys();
     gravityButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     //Phaser does all scaling because of this line.
@@ -46,6 +49,18 @@ function update() {
     hero.body.velocity.y = 0;
     //if (gravityButton.isDown) {
     if (gravityButton.isDown && hero.body.blocked.down || gravityButton.isDown && hero.body.blocked.up) {
+        if (floor) {
+            hero.anchor.setTo(1, .5); //so it flips around its middle
+            hero.scale.y = 1; //facing default direction
+            hero.scale.y = -1; //flipped
+            floor = false;
+        }
+        else {
+            hero.anchor.setTo(1, .5); //so it flips around its middle
+            hero.scale.y = -1; //facing default direction
+            hero.scale.y = 1; //flipped
+            floor = true;
+        }
         game.physics.arcade.gravity.y = game.physics.arcade.gravity.y * -1;
     }
     if (cursors.left.isDown) {

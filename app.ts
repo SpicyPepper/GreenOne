@@ -2,6 +2,9 @@
 var game = new Phaser.Game(800, 512, Phaser.AUTO, 'greenone', { preload: preload, create: create, update: update, render: render });
 var map;
 var hero;
+var bullets;
+var bullet;
+var bulletTime = 0;
 var enemyChase;
 var cursors;
 var background;
@@ -14,11 +17,11 @@ var floor; // boolean for is character on the floor
 
         game.load.tilemap('level1', 'resources/level1.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('tiles-1', 'resources/tiles-1.png');
-
+        game.load.image('bullet', 'visuals/laser.png');
         game.load.image('background', 'visuals/bkgrnd_sand.png');
         game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
         game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
-        game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 42.9, 64);
+        game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 30, 67);
         
     }
     
@@ -43,6 +46,14 @@ var floor; // boolean for is character on the floor
 
         game.physics.arcade.gravity.y = 10000;
 
+        bullets = game.add.group();
+        bullets.enableBody = true;
+        bullets.physicsBodyType = Phaser.Physics.ARCADE;
+        bullets.createMultiple(30, 'bullet');
+        bullets.setAll('anchor.x', 1);
+        bullets.setAll('anchor.y', 0);
+        bullets.setAll('outOfBoundsKill', true);
+        bullets.setAll('checkWorldBounds', true);
 
         //Phaser.Physics.Arcade.collideSpriteVsTilemapLayer(hero, 
         //hero sprite
@@ -106,7 +117,7 @@ var floor; // boolean for is character on the floor
         if (cursors.left.isDown) {
             hero.body.velocity.x = -240;
         } else if (cursors.right.isDown) {
-            hero.body.velocity.x = 240;
+            fireBullet();
         }
         if (cursors.up.isDown) {
             hero.body.velocity.y = -240;
@@ -116,6 +127,30 @@ var floor; // boolean for is character on the floor
         //if (hero.body.blocked.right) {
         //    hero.animations.stop();
         //}
+    }
+
+    function fireBullet() {
+
+        //  To avoid them being allowed to fire too fast we set a time limit
+        if (game.time.now > bulletTime) {
+            //  Grab the first bullet we can from the pool
+            bullet = bullets.getFirstExists(false);
+
+            if (bullet) {
+                //  And fire it
+                bullet.reset(hero.x + 150, hero.y + 30);
+                bullet.body.velocity.x = 5000;
+                bulletTime = game.time.now + 200;
+            }
+        }
+
+    }
+
+    function resetBullet(bullet) {
+
+        //  Called if the bullet goes out of the screen
+        bullet.kill();
+
     }
 
     function render() {

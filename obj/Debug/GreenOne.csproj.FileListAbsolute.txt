@@ -15,3 +15,9 @@ C:\Users\Kyle Sessions\Documents\GitHub\GreenOne\GreenOne\bin\GreenOne.pdb
 C:\Users\Kyle Sessions\Documents\GitHub\GreenOne\GreenOne\obj\Debug\GreenOne.csprojResolveAssemblyReference.cache
 C:\Users\Kyle Sessions\Documents\GitHub\GreenOne\GreenOne\obj\Debug\GreenOne.dll
 C:\Users\Kyle Sessions\Documents\GitHub\GreenOne\GreenOne\obj\Debug\GreenOne.pdb
+C:\Users\Aaron\Desktop\CS\TCSS491\Project\GreenOne\bin\GreenOne.dll.config
+C:\Users\Aaron\Desktop\CS\TCSS491\Project\GreenOne\bin\GreenOne.dll
+C:\Users\Aaron\Desktop\CS\TCSS491\Project\GreenOne\bin\GreenOne.pdb
+C:\Users\Aaron\Desktop\CS\TCSS491\Project\GreenOne\obj\Debug\GreenOne.csprojResolveAssemblyReference.cache
+C:\Users\Aaron\Desktop\CS\TCSS491\Project\GreenOne\obj\Debug\GreenOne.dll
+C:\Users\Aaron\Desktop\CS\TCSS491\Project\GreenOne\obj\Debug\GreenOne.pdb

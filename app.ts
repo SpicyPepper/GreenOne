@@ -21,7 +21,11 @@ var floor; // boolean for is character on the floor
         game.load.image('background', 'visuals/bkgrnd_sand.png');
         game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
         game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
+<<<<<<< HEAD
         game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 30, 67);
+=======
+        game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 43, 64);
+>>>>>>> origin/master
         
     }
     

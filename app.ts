@@ -11,21 +11,30 @@ var background;
 var layer;
 var gravityButton;
 var floor; // boolean for is character on the floor
+<<<<<<< HEAD
 var hasFlipped = false; //
+=======
+var first;
+>>>>>>> origin/master
 
 
     function preload() {
 
         game.load.tilemap('level1', 'resources/level1.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('level2', 'resources/level2.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('tiles-1', 'resources/tiles-1.png');
         game.load.image('bullet', 'visuals/laser.png');
         game.load.image('background', 'visuals/bkgrnd_sand.png');
         game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
+
        // game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
 
         //game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 30, 67);
 
         game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 43, 64);
+
+
+        game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 56.68, 67);
 
         
     }
@@ -38,7 +47,8 @@ var hasFlipped = false; //
         //adds tilesprite (tilespritet necessary for parallax scrolling);
         background = game.add.tileSprite(0, 0, 1024, 512, 'background');
 
-        map = game.add.tilemap('level1');
+        //map = game.add.tilemap('level1');
+        map = game.add.tilemap('level2');
         //set collision
         map.addTilesetImage('tiles-1');
 
@@ -59,6 +69,8 @@ var hasFlipped = false; //
         bullets.setAll('anchor.y', 0);
         bullets.setAll('outOfBoundsKill', true);
         bullets.setAll('checkWorldBounds', true);
+
+        first = true;
 
         //Phaser.Physics.Arcade.collideSpriteVsTilemapLayer(hero, 
         //hero sprite
@@ -84,9 +96,8 @@ var hasFlipped = false; //
 
         cursors = game.input.keyboard.createCursorKeys();  
         gravityButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);  
-       //Phaser does all scaling because of this line.
     }
-    //mapeditor.org for tiles
+
     function update() {
         game.physics.arcade.collide(hero, layer);
         game.physics.arcade.collide(enemyChase, layer);
@@ -118,21 +129,11 @@ var hasFlipped = false; //
                 floor = true;
             }
             game.physics.arcade.gravity.y = game.physics.arcade.gravity.y * -1;
-            
+            first = false;
         }
-        if (cursors.left.isDown) {
-            hero.body.velocity.x = -240;
-        } else if (cursors.right.isDown) {
+        if (cursors.right.isDown) {
             fireBullet();
         }
-        if (cursors.up.isDown) {
-            hero.body.velocity.y = -240;
-        } else if (cursors.down.isDown) {
-            hero.body.velocity.y = 240;
-        }
-        //if (hero.body.blocked.right) {
-        //    hero.animations.stop();
-        //}
     }
 
     function fireBullet() {
@@ -143,6 +144,7 @@ var hasFlipped = false; //
             bullet = bullets.getFirstExists(false);
 
             if (bullet) {
+<<<<<<< HEAD
                 //  And fire it
                 //150 30
                 if(hasFlipped)
@@ -151,6 +153,24 @@ var hasFlipped = false; //
                     bullet.reset(hero.x + 150, hero.y + 30);
                 bullet.body.velocity.x = 5000;
                 bulletTime = game.time.now + 200;
+=======
+                if (floor) {
+                    if (first) {
+                        //  And fire it
+                        bullet.reset(hero.x + 170, hero.y + 30);
+                        bullet.body.velocity.x = 10000;
+                        bulletTime = game.time.now + 200;
+                    } else {
+                        bullet.reset(hero.x + 30, hero.y - 30);
+                        bullet.body.velocity.x = 10000;
+                        bulletTime = game.time.now + 200;
+                    }             
+                } else {
+                    bullet.reset(hero.x + 30, hero.y + 5);
+                    bullet.body.velocity.x = 10000;
+                    bulletTime = game.time.now + 200;
+                }
+>>>>>>> origin/master
             }
         }
 

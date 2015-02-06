@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1600" height="32" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" source="../../../../../../Program Files (x86)/Tiled/util/tiles-1.tsx"/>
+ <layer name="Tile Layer 1" width="1600" height="32">
+  <data encoding="base64" compression="zlib">
+   eJzt3cFtg0AQQNG9GXdiOknSmK0kddpy0kRcAEJkxTAs+570T1zGe0JaDR5PpYxaVK3suaUeu+xgBkmSJEmSJEl53bS4WtlzSz123cEMkiRJkiRJkvJ6aHG1sueWeuy+gxkkSZIkSZIk5QUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//U5lPI10fdQ/wwAAAAAACDTcyjlZ6Lfof4ZAAAAAABwXBG7FWvvXbydS3mf6ONc/wwAAAAAADiuiN0KexcAAAAAANC37P+oiNitsHcBAAAAAADHN3fH0cOuRPYdDwAAAAAAUKf2jqOHXYke7ngAAAAAAKBV7jjq9P77AQAAAAAgmzuOeHNn7FtZAAAAAACwPncc8ebO2LeyAAAAAABgfe444s2d8dwzeyMAAAAAAMDR2BsBAAAAAACOpnZvBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAODILqdSxgaLtvV82ecpSZKktmv1vV6SJEmSorq+ujVYtK3nyz5PSZIktV2r7/WSJEmSFNX91aPBom09X/Z5SpIkqe1afa+XJEmSpKj+AAvLeto=
+  </data>
+ </layer>
+</map>

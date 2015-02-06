@@ -10,18 +10,16 @@ var background;
 var layer;
 var gravityButton;
 var floor; // boolean for is character on the floor
+var hasFlipped = false; //
 function preload() {
     game.load.tilemap('level1', 'resources/level1.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('tiles-1', 'resources/tiles-1.png');
     game.load.image('bullet', 'visuals/laser.png');
     game.load.image('background', 'visuals/bkgrnd_sand.png');
     game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
-    game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
-<<<<<<< HEAD
-    game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 30, 67);
-=======
+    // game.load.spritesheet('hero', '/visuals/test_runner.png', 138, 128);
+    //game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 30, 67);
     game.load.spritesheet('enemyChase', '/visuals/megaenemy.png', 43, 64);
->>>>>>> origin/master
 }
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -78,6 +76,7 @@ function update() {
     enemyChase.body.velocity.y = 0;
     //if (gravityButton.isDown) {
     if (gravityButton.isDown && hero.body.blocked.down || gravityButton.isDown && hero.body.blocked.up) {
+        hasFlipped = true;
         if (floor) {
             hero.anchor.setTo(1, .5); //so it flips around its middle
             hero.scale.y = 1; //facing default direction
@@ -121,7 +120,11 @@ function fireBullet() {
         bullet = bullets.getFirstExists(false);
         if (bullet) {
             //  And fire it
-            bullet.reset(hero.x + 150, hero.y + 30);
+            //150 30
+            if (hasFlipped)
+                bullet.reset(hero.x + 75, hero.y - 30);
+            else
+                bullet.reset(hero.x + 150, hero.y + 30);
             bullet.body.velocity.x = 5000;
             bulletTime = game.time.now + 200;
         }
